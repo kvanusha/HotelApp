@@ -1,0 +1,70 @@
+{% extends 'hotelapp/base.html' %}
+{% block container %}
+    <br/>
+    <br/>
+<!--image placeholder-->
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-1 main">
+          <h1 class="page-header">Rooms</h1>
+
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img  class="img-circle" src="http://www.majestichotelguangzhou.cn/images/pic/Business-Single-Room.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h3>Luxary-Single</h3>
+
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img class="img-circle" src="https://images.oyster.com/photos/luxury-double-room--v11716564-290.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h3>Luxary-Double</h3>
+
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img class="img-circle" src="http://www.bluekeyshotel.co.uk/img/room/image-1.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h3>Normal-Single</h3>
+
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img class="img-circle" src="https://media-cdn.tripadvisor.com/media/photo-s/02/aa/d2/47/filename-double-bed-room.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h3>Normal-Double</h3>
+            </div>
+
+          </div>
+
+     </div>
+<!--list of rooms-->
+          <div class="container" style="margin-top:10%">
+
+      <div class="row">
+        <div class="col-md-9 col-md-offset-1">
+          <table class="table table-bordered"><br/>
+            <thead>
+              <tr>
+                <td>TYPE</td>
+                <td>COST</td>
+                <td>STATUS</td>
+                </tr>
+            </thead>
+            <tbody>
+
+            {% if rooms %}
+
+    {% for room in rooms %}
+       <tr>
+         <td>{{room.type}}</td>
+         <td>{{room.cost}}</td>
+         <td>{{room.status}}</td>
+
+       </tr>
+    {% endfor %}
+
+{% else %}
+    <p>No Rooms are available.</p>
+{% endif %}
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+      </div>
+
+{% endblock container %}

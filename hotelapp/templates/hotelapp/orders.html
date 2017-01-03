@@ -1,0 +1,91 @@
+{% extends 'hotelapp/base.html' %}
+{% block container %}
+
+      {% if not ordercomplete %}
+  <div class="container" style="margin-top:10%">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Order Form</h2>
+                <form method="post" action="/hotel/orders/" class="form-horizontal">
+                    {% csrf_token %}
+                    <!--Food items-->
+                    <!--Rooms-->
+                    <!--User ID-->
+                    <!---->
+                    {% if foods %}
+                    <select name="foods" class="form-control">
+                         {% for food in foods %}
+                         <option value="{{food.id}}">{{food.name}}</option>
+
+                        {% endfor %}
+                    </select>
+                    {% endif %}
+                    <br />
+                    {% if rooms %}
+                    <select name="rooms" class="form-control">
+                         {% for room in rooms %}
+                         <option value="{{room.id}}">{{room.type}}</option>
+
+                        {% endfor %}
+                    </select>
+                    {% endif %}
+
+                    <br />
+
+                      <!--<form method="GET" action="/hotel/orders/{{food.menu_id}}">-->
+                    <input type="submit" class="btn btn-primary" value="order">
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% else %}
+  <div class="container" style="margin-top:10%">
+
+      <div class="row">
+        <div class="col-md-9 col-md-offset-1">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td>food_item</td>
+                <td>room_type</td>
+                <td>user_id</td>
+                  <td>order_timestamp</td>
+                  <td>status</td>
+                </tr>
+            </thead>
+            <tbody>
+
+            {% if orders %}
+
+    {% for order in orders %}
+       <tr>
+         <td>{{order.food_item}}</td>
+         <td>{{order.room_type}}</td>
+         <td>{{order.user_id}}</td>
+            <td>{{order.order_timestamp}}</td>
+            <td>{{order.status}}</td>
+
+       </tr>
+    {% endfor %}
+
+{% else %}
+    <p>No Orders are available.</p>
+{% endif %}
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+      </div>
+  {% endif %}
+{% if items %}
+                    <select name="items" class="form-control">
+                         {% for item in items %}
+                         <option value="{{item.id}}">{{item.status}}</option>
+
+                        {% endfor %}
+ {% endif %}
+{% endblock container %}
